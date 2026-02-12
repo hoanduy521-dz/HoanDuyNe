@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile HoanDuyNe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4a4141, #a0787d, #8b444c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            cursor: pointer; /* Gợi ý người dùng click vào trang */
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 380px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 26px;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            text-decoration: none;
+            color: white;
+            border-radius: 15px;
+            transition: 0.3s;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .link-item i { margin-right: 10px; font-size: 18px; }
+        .link-item:hover { transform: scale(1.03); background: rgba(255, 255, 255, 0.2); }
+        .fb:hover { background: #1877F2; }
+        .zalo:hover { background: #0068FF; }
+        .discord:hover { background: #5865F2; }
+
+        /* Trình phát nhạc ẩn đi hoặc để nhỏ bên dưới */
+        .music-player {
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 50px;
+        }
+
+        audio {
+            width: 100%;
+            height: 30px;
+            filter: invert(100%);
+        }
+
+        .status-music {
+            font-size: 10px;
+            margin-top: 5px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body onclick="playMusic()">
+
+    <div class="profile-card">
+        <img src="https://ui-avatars.com/api/?name=Hoan+Duy&background=8b444c&color=fff&size=200&bold=true" alt="Avatar" class="avatar">
+        
+        <h1>HoanDuyNe</h1>
+
+        <div class="links">
+            <a href="https://www.facebook.com/share/15Y9hP9ruSv/" target="_blank" class="link-item fb">
+                <i class="fa-brands fa-facebook"></i> Facebook
+            </a>
+
+            <a href="https://zalo.me/0363601129" target="_blank" class="link-item zalo">
+                <i class="fa-solid fa-comment-dots"></i> Zalo: 0363601129
+            </a>
+
+            <a href="https://discord.com/app" target="_blank" class="link-item discord" onclick="alert('Username Discord: hoanduyne')">
+                <i class="fa-brands fa-discord"></i> Discord: hoanduyne
+            </a>
+        </div>
+
+        <div class="music-player">
+            <audio id="mySong" loop>
+                <source src="chillchill.mp3" type="audio/mpeg">
+            </audio>
+            <p class="status-music">Chạm vào bất kỳ đâu để phát nhạc ♫</p>
+        </div>
+    </div>
+
+    <script>
+        var hasPlayed = false;
+        function playMusic() {
+            var music = document.getElementById("mySong");
+            if (!hasPlayed) {
+                music.play();
+                hasPlayed = true;
+                document.querySelector(".status-music").innerHTML = "Đang phát: chillchill.mp3 ♫";
+            }
+        }
+
+        // Thử tự động phát ngay khi load (chỉ hoạt động trên một số trình duyệt nhất định)
+        window.addEventListener('load', function() {
+            var music = document.getElementById("mySong");
+            music.play().catch(function(error) {
+                console.log("Trình duyệt chặn autoplay, chờ người dùng click.");
+            });
+        });
+    </script>
+
+</body>
+</html>
